@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main>
+        <mis-tareas :listado="tareas">
+            <template scope="datos">
+                <li> <h1>{{ datos.titulo }}</h1></li>
+            </template>
+        </mis-tareas>
+        <pre>{{ $data }}</pre>
+    </main>
+
+    <template id="mis-tareas-template">
+        <ul>
+            <slot v-for="tarea in listado" :titulo="tarea.titulo"></slot>
+            <!-- <li v-for="tarea in listado">
+                {{ tarea.titulo }}
+            </li> -->
+        </ul>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/main.js"></script> 
+</body>
+</html>
