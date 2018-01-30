@@ -1,3 +1,5 @@
+const eventBus = new Vue();
+
 Vue.component('listado-productos', {
     props: ['productos'],
     template: `
@@ -14,10 +16,10 @@ Vue.component('listado-productos', {
     `,
     methods: {
         anadirProducto(precio) {
-
+            eventBus.$emit('anadir', precio);
         },
         eliminarProducto(precio){
-
+            eventBus.$emit('eliminar', precio);
         },
     }
 });
@@ -34,6 +36,20 @@ Vue.component('carrito-compra', {
             cantidadProductos: 0,
             total: 0
         }
+    },
+    created() {
+        eventBus.$on('anadir', (precio) => {
+            if (this.cantidadProductos >= 0) {
+                this.total += precio;
+                this.cantidadProductos++;
+            }
+        });
+        eventBus.$on('eliminar', (precio) => {
+            if (this.cantidadProductos > 0) {
+                this.total -= precio;
+                this.cantidadProductos--;
+            }
+        });
     }
 });
 
