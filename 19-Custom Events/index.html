@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main>
+        <button @click="mostrarExito = true">Exito</button>
+        <button @click="mostrarError = true">Error</button>
+        <button @click="mostrarAdvertencia = true">Advertencia</button>
+        <alerta @ocultar="mostrarExito = false" v-show="mostrarExito" tipo="alerta--exito" posicion="alerta--arriba-derecha">
+            <template slot="header">Todo ok :)</template>
+            <template>Este es el nuevo contenido del alerta:</template>
+            <template slot="footer">Puedes continuar con normalidad</template>
+        </alerta>
+        <alerta @click="mostrarError = false" v-show="mostrarError" tipo="alerta--error" posicion="alerta--arriba-izquierda">
+                <template slot="header">Error fatal</template>
+                <template>El mundo esta apunto de implosionar</template>
+                <template slot="footer">RIP</template>
+        </alerta>
+        <alerta @click="mostrarAdvertencia = false" v-show="mostrarAdvertencia" tipo="alerta--advertencia" posicion="alerta--abajo-izquierda">
+                <template slot="header">Error fatal</template>
+                <template>El mundo esta apunto de implosionar</template>
+                <template slot="footer">RIP</template>
+        </alerta>
+        <pre>{{ $data }}</pre>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/main.js"></script> 
+</body>
+</html>
